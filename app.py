@@ -21,11 +21,12 @@ def hello_world():
         os.path.join('Densenetmodel50epochs1500resample224size.keras'))
     message = 'model loaded'
     #
-    # image = Image.open('df.jpg')
-    # image = tf.image.resize(image, (SIZE, SIZE))
-    # image = np.expand_dims(image / 255, axis=0)
-    #
-    # prediction = model.predict(image)
+    image = Image.open('df.jpg')
+    image = tf.image.resize(image, (SIZE, SIZE))
+    image = np.expand_dims(image / 255, axis=0)
+    message += ' image resized'
+    prediction = model.predict(image)
+    message += ' prediction made'
     #
     # predicted_label = 'Predicted class is: ' + str(
     #     class_labels[prediction.argmax()]) + '. With a probability of ' + str(prediction[0, prediction.argmax()]) + '.'
