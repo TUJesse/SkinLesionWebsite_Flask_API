@@ -45,11 +45,8 @@ def testpost():
 
 @app.route('/prediction', methods=["POST"])
 def prediction():
-    #model_path = '"C:\\Users\jesse\OneDrive\Desktop\Year 4\Project\models\Densenetmodel50epochs1500resample224size.keras"'
-    model = load_model(
-        os.path.join('Densenetmodel50epochs1500resample224size.keras'))
+    model = load_model(os.path.join('Densenetmodel50epochs1500resample224size.keras'))
 
-    #file = request.files['file']
     img = request.files['file']
     image = Image.open(img)
     image = tf.image.resize(image, (SIZE, SIZE))
@@ -57,7 +54,8 @@ def prediction():
 
     prediction = model.predict(image)
 
-    predicted_label = 'Predicted class is: ' + str(class_labels[prediction.argmax()]) + '. With a probability of ' + str(prediction[0, prediction.argmax()]) + '.'
+    predicted_label = 'Predicted class is: ' + str(
+        class_labels[prediction.argmax()]) + '. With a probability of ' + str(prediction[0, prediction.argmax()]) + '.'
 
     dictToReturn = {'': str(predicted_label)}
 
