@@ -30,7 +30,7 @@ def testpost():
 def prediction():
     #model_path = '"C:\\Users\jesse\OneDrive\Desktop\Year 4\Project\models\Densenetmodel50epochs1500resample224size.keras"'
     model = load_model(
-        os.path.join('SequentialRelu50epochs1500resample64size.keras'))
+        os.path.join('Densenetmodel50epochs1500resample224size.keras'))
 
     #file = request.files['file']
     img = request.files['file']
@@ -72,7 +72,7 @@ def SVM_CNN_prediction():
 
 @app.route('/pretrained', methods=["POST"])
 def pretrainedCnn():
-    model = load_model(os.path.join('SequentialRelu50epochs1500resample64size.keras'))
+    model = load_model(os.path.join('Densenetmodel50epochs1500resample224size.keras'))
 
     img = request.files['file']
     image = Image.open(img)
