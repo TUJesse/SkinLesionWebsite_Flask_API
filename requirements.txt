@@ -1,6 +1,7 @@
 gunicorn
-keras
-numpy
-joblib
-flask
-tensorflow
+tensorflow==2.15.0
+keras~=3.0.5
+numpy~=1.26.4
+joblib~=1.2.0
+flask~=2.2.3
+Pillow~=10.0.1
