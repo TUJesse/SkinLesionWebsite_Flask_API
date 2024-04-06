@@ -39,23 +39,24 @@ def prediction():
 
 
 def predictor(img):
-    #model_path = '"C:\\Users\jesse\OneDrive\Desktop\Year 4\Project\models\Densenetmodel50epochs1500resample224size.keras"'
-    # model = load_model(
-    #     os.path.join('Densenetmodel50epochs1500resample224size.keras'))
+    with app.app_context():
+        #model_path = '"C:\\Users\jesse\OneDrive\Desktop\Year 4\Project\models\Densenetmodel50epochs1500resample224size.keras"'
+        # model = load_model(
+        #     os.path.join('Densenetmodel50epochs1500resample224size.keras'))
 
-    #file = request.files['file']
-    #img = request.files['file']
-    image = Image.open(img)
-    image = tf.image.resize(image, (SIZE, SIZE))
-    image = np.expand_dims(image / 255, axis=0)
+        #file = request.files['file']
+        #img = request.files['file']
+        image = Image.open(img)
+        image = tf.image.resize(image, (SIZE, SIZE))
+        image = np.expand_dims(image / 255, axis=0)
 
-    prediction = Dmodel.predict(image)
+        prediction = Dmodel.predict(image)
 
-    predicted_label = 'Predicted class is: ' + str(class_labels[prediction.argmax()]) + '. With a probability of ' + str(prediction[0, prediction.argmax()]) + '.'
+        predicted_label = 'Predicted class is: ' + str(class_labels[prediction.argmax()]) + '. With a probability of ' + str(prediction[0, prediction.argmax()]) + '.'
 
-    dictToReturn = {'': str(predicted_label)}
+        dictToReturn = {'': str(predicted_label)}
 
-    return jsonify(dictToReturn)
+        return jsonify(dictToReturn)
 
 
 @app.route('/cnnsvm', methods=["POST"])
