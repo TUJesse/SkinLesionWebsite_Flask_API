@@ -2,5 +2,6 @@ gunicorn
 keras
 numpy
 joblib
-flask
+Flask
+Flask-RESTful
 tensorflow
