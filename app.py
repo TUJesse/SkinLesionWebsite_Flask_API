@@ -1,12 +1,11 @@
-from flask import Flask, jsonify, request
-from flask_restful import Resource, Api
-from keras.models import load_model
-from keras.preprocessing import image
-from PIL import Image
-import tensorflow as tf
-import numpy as np
 import os
+
 import joblib
+import numpy as np
+import tensorflow as tf
+from PIL import Image
+from flask import Flask, jsonify, request
+from keras.models import load_model
 
 app = Flask(__name__)
 
