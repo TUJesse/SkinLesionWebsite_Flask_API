@@ -30,7 +30,7 @@ def testpost():
 def prediction():
     #model_path = '"C:\\Users\jesse\OneDrive\Desktop\Year 4\Project\models\Densenetmodel50epochs1500resample224size.keras"'
     model = load_model(
-        os.path.join('Densenetmodel50epochs1500resample224size.keras'))
+        os.path.join('SequentialRelu50epochs1500resample64size.keras'))
 
     #file = request.files['file']
     img = request.files['file']
@@ -44,8 +44,6 @@ def prediction():
 
     dictToReturn = {'': str(predicted_label)}
 
-    import time
-    time.sleep(120)
     return jsonify(dictToReturn)
 
 
