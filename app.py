@@ -44,6 +44,8 @@ def prediction():
 
     dictToReturn = {'': str(predicted_label)}
 
+    import time
+    time.sleep(120)
     return jsonify(dictToReturn)
 
 
