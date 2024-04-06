@@ -1,4 +1,5 @@
 import os
+from concurrent.futures import ThreadPoolExecutor
 
 import joblib
 import numpy as np
@@ -16,6 +17,8 @@ SIZE2 = 64
 class_labels = ['Class 0 (akiec)', 'Class 1 (bcc)', 'Class 2 (bkl)', 'Class 3 (df)', 'Class 4 (mel)',
                     'Class 5 (nv)', 'Class 6 (vasc)']
 
+executor = ThreadPoolExecutor()
+
 
 @app.route('/', methods=["POST"])
 def hello_world():
@@ -30,12 +33,18 @@ def testpost():
 
 @app.route('/prediction', methods=["POST"])
 def prediction():
+    # Run the prediction asynchronously
+    future = executor.submit(predictor, request.files['file'])
+    return future.result()
+
+
+def predictor(img):
     #model_path = '"C:\\Users\jesse\OneDrive\Desktop\Year 4\Project\models\Densenetmodel50epochs1500resample224size.keras"'
     # model = load_model(
     #     os.path.join('Densenetmodel50epochs1500resample224size.keras'))
 
     #file = request.files['file']
-    img = request.files['file']
+    #img = request.files['file']
     image = Image.open(img)
     image = tf.image.resize(image, (SIZE, SIZE))
     image = np.expand_dims(image / 255, axis=0)
