@@ -28,14 +28,14 @@ def hello_world():
     prediction = model.predict(image)
     message += ' prediction made'
     #
-    # predicted_label = 'Predicted class is: ' + str(
-    #     class_labels[prediction.argmax()]) + '. With a probability of ' + str(prediction[0, prediction.argmax()]) + '.'
+    predicted_label = 'Predicted class is: ' + str(
+        class_labels[prediction.argmax()]) + '. With a probability of ' + str(prediction[0, prediction.argmax()]) + '.'
 
     #dictToReturn = {'': str(predicted_label)}
     dictToReturn = {'': 'hello world'}
 
     #return jsonify(dictToReturn)
-    return message
+    return predicted_label
 
 @app.route('/post', methods=["POST"])
 def testpost():
