@@ -72,7 +72,7 @@ def SVM_CNN_prediction():
 
 @app.route('/pretrained', methods=["POST"])
 def pretrainedCnn():
-    model = load_model(os.path.join('Densenetmodel50epochs1500resample224size.keras'))
+    model = load_model(os.path.join('SequentialRelu50epochs1500resample64size.keras'))
 
     img = request.files['file']
     image = Image.open(img)
