@@ -8,8 +8,7 @@ from flask import Flask, jsonify, request
 from keras.models import load_model
 
 app = Flask(__name__)
-Dmodel = load_model(
-        os.path.join('Densenetmodel50epochs1500resample224size.keras'))
+
 SIZE = 224
 SIZE2 = 64
 class_labels = ['Class 0 (akiec)', 'Class 1 (bcc)', 'Class 2 (bkl)', 'Class 3 (df)', 'Class 4 (mel)',
@@ -30,8 +29,8 @@ def testpost():
 @app.route('/prediction', methods=["POST"])
 def prediction():
     #model_path = '"C:\\Users\jesse\OneDrive\Desktop\Year 4\Project\models\Densenetmodel50epochs1500resample224size.keras"'
-    # model = load_model(
-    #     os.path.join('Densenetmodel50epochs1500resample224size.keras'))
+    model = load_model(
+        os.path.join('Densenetmodel50epochs1500resample224size.keras'))
 
     #file = request.files['file']
     img = request.files['file']
@@ -39,7 +38,7 @@ def prediction():
     image = tf.image.resize(image, (SIZE, SIZE))
     image = np.expand_dims(image / 255, axis=0)
 
-    prediction = Dmodel.predict(image)
+    prediction = model.predict(image)
 
     predicted_label = 'Predicted class is: ' + str(class_labels[prediction.argmax()]) + '. With a probability of ' + str(prediction[0, prediction.argmax()]) + '.'
 
