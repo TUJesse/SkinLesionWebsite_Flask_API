@@ -17,8 +17,9 @@ class_labels = ['Class 0 (akiec)', 'Class 1 (bcc)', 'Class 2 (bkl)', 'Class 3 (d
 
 @app.route('/', methods=["GET"])
 def hello_world():
-    # model = load_model(
-    #     os.path.join('Densenetmodel50epochs1500resample224size.keras'))
+    model = load_model(
+        os.path.join('Densenetmodel50epochs1500resample224size.keras'))
+    message = 'model loaded'
     #
     # image = Image.open('df.jpg')
     # image = tf.image.resize(image, (SIZE, SIZE))
@@ -33,7 +34,7 @@ def hello_world():
     dictToReturn = {'': 'hello world'}
 
     #return jsonify(dictToReturn)
-    return dictToReturn
+    return message
 
 @app.route('/post', methods=["POST"])
 def testpost():
