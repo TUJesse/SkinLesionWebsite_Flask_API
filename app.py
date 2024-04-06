@@ -15,10 +15,25 @@ class_labels = ['Class 0 (akiec)', 'Class 1 (bcc)', 'Class 2 (bkl)', 'Class 3 (d
                     'Class 5 (nv)', 'Class 6 (vasc)']
 
 
-@app.route('/', methods=["POST"])
+@app.route('/', methods=["GET"])
 def hello_world():
-    dictToReturn = {'text': 'hello world'}
-    return jsonify(dictToReturn)
+    # model = load_model(
+    #     os.path.join('Densenetmodel50epochs1500resample224size.keras'))
+    #
+    # image = Image.open('df.jpg')
+    # image = tf.image.resize(image, (SIZE, SIZE))
+    # image = np.expand_dims(image / 255, axis=0)
+    #
+    # prediction = model.predict(image)
+    #
+    # predicted_label = 'Predicted class is: ' + str(
+    #     class_labels[prediction.argmax()]) + '. With a probability of ' + str(prediction[0, prediction.argmax()]) + '.'
+
+    #dictToReturn = {'': str(predicted_label)}
+    dictToReturn = {'': 'hello world'}
+
+    #return jsonify(dictToReturn)
+    return dictToReturn
 
 @app.route('/post', methods=["POST"])
 def testpost():
