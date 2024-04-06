@@ -1,6 +1,6 @@
 gunicorn
 keras==3.0.5
-tensorflow==2.15.0
+tensorflow
 numpy==1.26.4
 joblib==1.2.0
 flask==2.2.3
