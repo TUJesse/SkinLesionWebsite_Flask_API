@@ -3,5 +3,6 @@ keras==3.0.5
 tensorflow
 numpy==1.26.4
 joblib==1.2.0
-flask==2.2.3
+flask
 Pillow==10.0.1
+werkzeug
