@@ -19,6 +19,7 @@ class_labels = ['Class 0 (akiec)', 'Class 1 (bcc)', 'Class 2 (bkl)', 'Class 3 (d
 def hello_world():
     model = load_model(
         os.path.join('Densenetmodel50epochs1500resample224size.keras'))
+    svm = joblib.load(os.path.join('svm_model.joblib'))
     message = 'model loaded'
     #
     image = Image.open('df.jpg')
@@ -27,9 +28,14 @@ def hello_world():
     message += ' image resized'
     prediction = model.predict(image)
     message += ' prediction made'
+    prediction1 = svm.predict(prediction)
+
+    predicted_label = class_labels[prediction1[0]]
+
+    #dictToReturn = {'': str(predicted_label)}
     #
-    predicted_label = 'Predicted class is: ' + str(
-        class_labels[prediction.argmax()]) + '. With a probability of ' + str(prediction[0, prediction.argmax()]) + '.'
+    # predicted_label = 'Predicted class is: ' + str(
+    #     class_labels[prediction.argmax()]) + '. With a probability of ' + str(prediction[0, prediction.argmax()]) + '.'
 
     #dictToReturn = {'': str(predicted_label)}
     dictToReturn = {'': 'hello world'}
