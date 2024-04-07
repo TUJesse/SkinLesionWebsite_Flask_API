@@ -84,7 +84,7 @@ def SVM_CNN_prediction():
 
     prediction = svm.predict(features)
 
-    predicted_label = class_labels[prediction[0]]
+    predicted_label = 'Predicted class is: ' + str(class_labels[prediction[0]]) + '.'
 
     dictToReturn = {'': str(predicted_label)}
 
