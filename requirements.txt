@@ -6,3 +6,4 @@ joblib==1.2.0
 flask
 Pillow==10.0.1
 werkzeug
+scikit-learn
