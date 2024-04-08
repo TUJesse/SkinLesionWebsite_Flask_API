@@ -72,20 +72,15 @@ def prediction():
 def SVM_CNN_prediction():
     model = load_model(
         os.path.join('Densenetmodel50epochs1500resample224size.keras'))
-
     svm = joblib.load(os.path.join('svm_model.joblib'))
-
     img = request.files['file']
     image = Image.open(img)
     image = tf.image.resize(image, (SIZE, SIZE))
     image = np.expand_dims(image / 255, axis=0)
+    prediction = model.predict(image)
+    prediction1 = svm.predict(prediction)
 
-    features = model.predict(image)
-
-    prediction = svm.predict(features)
-
-    predicted_label = 'Predicted class is: ' + str(class_labels[prediction[0]]) + '.'
-
+    predicted_label = 'Predicted class is: ' + str(class_labels[prediction1[0]]) + '.'
     dictToReturn = {'': str(predicted_label)}
 
     return jsonify(dictToReturn)
