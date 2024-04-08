@@ -11,8 +11,8 @@ app = Flask(__name__)
 
 SIZE = 224
 SIZE2 = 64
-class_labels = ['Class 0 (akiec)', 'Class 1 (bcc)', 'Class 2 (bkl)', 'Class 3 (df)', 'Class 4 (mel)',
-                    'Class 5 (nv)', 'Class 6 (vasc)']
+class_labels = ['actinic keratoses', 'basal cell carcinoma', 'benign keratosis lesion', 'dermatofibroma', 'melanoma',
+                    'melanocytic nevi', 'vascular lesion']
 
 
 @app.route('/', methods=["GET"])
@@ -60,10 +60,11 @@ def prediction():
 
     prediction = model.predict(image)
 
+    probability_percentage = prediction[0, prediction.argmax()] * 100
     predicted_label = 'Predicted class is: ' + str(
-        class_labels[prediction.argmax()]) + '. With a probability of ' + str(prediction[0, prediction.argmax()]) + '.'
+        class_labels[prediction.argmax()]) + '. With a probability of {:.2f}%.'.format(probability_percentage)
 
-    dictToReturn = {'': str(predicted_label)}
+    dictToReturn = str(predicted_label)
 
     return jsonify(dictToReturn)
 
@@ -81,7 +82,7 @@ def SVM_CNN_prediction():
     prediction1 = svm.predict(prediction)
 
     predicted_label = 'Predicted class is: ' + str(class_labels[prediction1[0]]) + '.'
-    dictToReturn = {'': str(predicted_label)}
+    dictToReturn = str(predicted_label)
 
     return jsonify(dictToReturn)
 
@@ -97,9 +98,11 @@ def pretrainedCnn():
 
     prediction = model.predict(image)
 
-    predicted_label = 'Predicted class is: ' + str(class_labels[prediction.argmax()]) + '. With a probability of ' + str(prediction[0, prediction.argmax()]) + '.'
+    probability_percentage = prediction[0, prediction.argmax()] * 100
+    predicted_label = 'Predicted class is: ' + str(
+        class_labels[prediction.argmax()]) + '. With a probability of {:.2f}%.'.format(probability_percentage)
 
-    dictToReturn = {'': str(predicted_label)}
+    dictToReturn = str(predicted_label)
 
     return jsonify(dictToReturn)
 
